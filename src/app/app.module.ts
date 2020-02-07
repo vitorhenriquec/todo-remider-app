@@ -14,6 +14,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
     ],
     imports: [
         NativeScriptModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,

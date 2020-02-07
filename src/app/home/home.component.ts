@@ -9,4 +9,12 @@ import {Component} from "@angular/core"
 
 export class HomeComponent{
     task = ''
+    tasks = []
+
+    onSetTask(){
+        this.tasks.push({
+            description: this.task,
+            active: true
+        });
+    }
 }
