@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core"
-import { Task, TaskService } from "./services/task-service";
+import { Task, TaskService } from "../services/task-service";
 
 @Component({
     selector: "ns-home",
@@ -11,17 +11,18 @@ import { Task, TaskService } from "./services/task-service";
 export class HomeComponent implements OnInit{
     
     public description: string = '';
-    public tasks: Array<Task>;
+    public tasks: Task[];
 
     constructor(private taskService: TaskService){}
 
     ngOnInit(): void{
-        this.tasks = this.taskService.getTasks();
+        this.taskService.getAll().subscribe(tasks => this.tasks = tasks);
+        console.log(this.tasks);
     }
 
-    onSetTask(){
-        let newTask = new Task(0,this.description,true);
-        this.tasks.push(newTask);
-        this.description = '';
+    addTask(){
+        //let newTask = new Task(0,this.description,true);
+        //this.tasks.push(newTask);
+        //this.description = '';
     }
 }
