@@ -1,0 +1,32 @@
+StackLayout{
+    align-self: center;
+}
+
+.title{
+    font-size: 24;
+    font-weight: bold;
+    color: rgba(175, 47, 47);
+}
+
+.inputTask{
+    padding: 20;
+    font-size: 24;
+    text-align: left;
+    outline: none;
+    border: 0;
+    border-width: 0;
+    border-bottom-width:0;
+	border-width: 0;
+}
+
+.btnAddTask{
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-width: 1;
+    padding: 10;
+}
+
+.taskItem{
+    font-size: 24;
+    padding: 10;
+}
