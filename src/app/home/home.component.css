@@ -3,7 +3,7 @@ StackLayout{
 }
 
 .title{
-    font-size: medium;
+    font-size: 24;
     font-weight: bold;
     color: rgba(175, 47, 47);
 }
