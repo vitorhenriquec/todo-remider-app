@@ -1,23 +1,25 @@
 import { Injectable } from "@angular/core";
+import {request, HttpResponse } from "tns-core-modules/http";
+import {api} from "./api"
 
 @Injectable({
     providedIn: "root"
 })
 export class TaskService{
-    private tasks = new Array<Task>(
-        {id: 0, description: "A", active:true},
-        {id: 1, description: "B", active:true},
-        {id: 2, description: "C", active:true},
-        {id: 3, description: "D", active:true},
-        {id: 4, description: "E", active:true},
-    )
+    private tasks: Array<Task> = new Array<Task>()
 
-    getTasks(): Array<Task>{
+    getTasks(){
+        request({
+            url: `${api.baseURL}/task`,
+            method: "GET"
+        }).then((response: HttpResponse) => {
+            this.tasks = response.content.toJSON();
+            console.log("@", this.tasks);
+        }, (e) => {
+            this.tasks = []
+        });
+        console.log("@", this.tasks);
         return this.tasks;
-    }
-
-    getTask(id: number): Task{
-        return this.tasks.filter((task => task.id == id))[0]
     }
 }
 
