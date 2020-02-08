@@ -17,12 +17,14 @@ export class HomeComponent implements OnInit{
 
     ngOnInit(): void{
         this.taskService.getAll().subscribe(tasks => this.tasks = tasks);
-        console.log(this.tasks);
     }
 
-    addTask(){
-        //let newTask = new Task(0,this.description,true);
-        //this.tasks.push(newTask);
-        //this.description = '';
+    addTask(): void{
+        const newTask: Task = new Task(0,this.description,true);
+        this.taskService.save(newTask).subscribe(task => {
+            this.tasks.push(task);
+        });
+        this.description = '';
+        this.ngOnInit();
     }
 }
