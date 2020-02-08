@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
 
     ngOnInit(): void{
         this.taskService.getAll().subscribe(tasks => this.tasks = tasks);
+        this.tasks.sort(this.sortById)
     }
 
     addTask(): void{
@@ -26,5 +27,28 @@ export class HomeComponent implements OnInit{
         });
         this.description = '';
         this.ngOnInit();
+    }
+
+    updateTask(id): void{
+        let taskUpdated;
+        this.taskService.update(id).subscribe(task => taskUpdated = task);
+        this.ngOnInit();
+    }
+
+    taskStyle(active: Boolean): string{
+        if(active){
+            return 'taskItem'
+        }
+        return 'taskItemDisable'
+    }
+
+    sortById(a,b){
+        if (a.id > b.id) {
+            return 1;
+        }
+        if (a.id < b.id) {
+            return -1;
+        }
+        return 0;
     }
 }

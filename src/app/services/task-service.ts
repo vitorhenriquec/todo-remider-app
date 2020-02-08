@@ -25,6 +25,10 @@ export class TaskService{
     save(task: Task): Observable<Task>{
         return this.http.post<Task>(`${API.baseURL}/task`, task, {headers: this.createRequestOptions()});
     }
+
+    update(taskId): Observable<Task>{
+        return this.http.put<Task>(`${API.baseURL}/task/${taskId}`, {headers: this.createRequestOptions()});
+    }
 }
 
 export class Task {

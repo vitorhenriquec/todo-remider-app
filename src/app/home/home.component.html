@@ -12,9 +12,9 @@
     <Button class="btnAddTask" text="Adicionar" (tap)="addTask()"></Button>
     </Form>
     <GridLayout rows="*" columns="*">
-        <ListView [items]="tasks" height="100%">
+        <ListView [items]="tasks.sort(sortById)" height="100%">
             <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-                <Label class="taskItem" [text]="item.description"></Label>
+                <Label [class]="taskStyle(item.active)" [text]="item.description" (tap)="updateTask(item.id)"></Label>
             </ng-template>
         </ListView>
     </GridLayout>
