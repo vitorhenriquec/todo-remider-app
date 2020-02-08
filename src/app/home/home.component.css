@@ -26,3 +26,8 @@ StackLayout{
     border-width: 1;
     padding: 10;
 }
+
+.taskItem{
+    font-size: 24;
+    padding: 10;
+}

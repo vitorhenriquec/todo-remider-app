@@ -3,20 +3,19 @@
     <Form>
         <TextField 
             class="inputTask"
-            [(ngModel)]="task"
+            [(ngModel)]="description"
             hint="What needs to be done?"
             autocorrect="false"
             autocapitalizationType="none"
         >
-        
         </TextField>
     <Button class="btnAddTask" text="Adicionar" (tap)="onSetTask()"></Button>
     </Form>
-    <ListView [items]="tasks" backgroundColor="red" separatorColor="blue">
-        <ng-template let-item="task">
-            <StackLayout>
-                <Label [text]="task.description" color="#000000"></Label>
-            </StackLayout>
-        </ng-template>
-    </ListView>
+    <GridLayout rows="*" columns="*">
+        <ListView [items]="tasks" height="100%">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <Label class="taskItem" [text]="item.description"></Label>
+            </ng-template>
+        </ListView>
+    </GridLayout>
 </StackLayout>
