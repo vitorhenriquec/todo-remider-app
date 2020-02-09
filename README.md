@@ -3,7 +3,7 @@ A app that reminds you of some task. It uses the api from this [link](https://to
 
 The API GitHub's project is [here](https://github.com/vitorhenriquec/todo) and the ReactFront's project is here [here](https://github.com/vitorhenriquec/todo-react).
 
-##Functionalities
+## Functionalities
 
 The functionalities are:
 - List all tasks from the API;
@@ -12,7 +12,7 @@ The functionalities are:
 - Remove a task (when a task in long pressed).
 
 
-##Preview
+## Preview
 You can download a preview [here](https://drive.google.com/file/d/1juEMYpI_iP5gI5RPGxb0wMH9b8YAcSpc/view?usp=sharing)
 
 Developed by Vitor Henrique.
