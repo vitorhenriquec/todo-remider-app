@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+### Removed
+
+## 1.0.0 [08/02/2020]
+
+### Added
 - List of all task from API.
 - Add a new task.
 - Add update task.
