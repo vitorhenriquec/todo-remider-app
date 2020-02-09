@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core"
 import { Task, TaskService } from "../services/task-service";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import * as Toast from "nativescript-toast";
 
 @Component({
     selector: "ns-home",
@@ -24,15 +26,19 @@ export class HomeComponent implements OnInit{
         const newTask: Task = new Task(0,this.description,true);
         this.taskService.save(newTask).subscribe(task => {
             this.tasks.push(task);
+            this.description = '';
+            Toast.makeText(`Task ${task.description} created.`).show();
+            this.ngOnInit();
         });
-        this.description = '';
-        this.ngOnInit();
     }
 
     updateTask(id): void{
-        let taskUpdated;
-        this.taskService.update(id).subscribe(task => taskUpdated = task);
-        this.ngOnInit();
+        const taskFound: Task = this.tasks.find(task => task.id == id);
+        const disableMessage = taskFound.active ? "disable": 'active';
+        this.taskService.update(id).subscribe(task => {
+            Toast.makeText(`Task ${task.description} updated. Now is ${disableMessage}`).show();
+            this.ngOnInit();
+        });
     }
 
     taskStyle(active: Boolean): string{
@@ -50,5 +56,23 @@ export class HomeComponent implements OnInit{
             return -1;
         }
         return 0;
+    }
+
+    deleteTask(id): void{
+        const taskFound: Task = this.tasks.find(task => task.id == id);
+        dialogs.confirm({
+            title: "Remove task",
+            message: `Are you sure you want to remove the task with description: ${taskFound.description}`,
+            okButtonText: "Ok",
+            cancelButtonText: "Cancel",
+        }).then(result => {
+            if(result){
+                this.taskService.delete(id).subscribe(item => {
+                    this.tasks.filter(task => task.id != id);
+                    Toast.makeText("Task removed").show();
+                    this.ngOnInit(); 
+                });
+            }
+        });
     }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import {API} from "./api"
 
 @Injectable({
@@ -28,6 +27,10 @@ export class TaskService{
 
     update(taskId): Observable<Task>{
         return this.http.put<Task>(`${API.baseURL}/task/${taskId}`, {headers: this.createRequestOptions()});
+    }
+
+    delete(taskId){
+        return this.http.delete(`${API.baseURL}/task/${taskId}`, {headers: this.createRequestOptions()});
     }
 }
 
