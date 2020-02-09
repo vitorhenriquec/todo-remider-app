@@ -1,4 +1,21 @@
 <StackLayout orientation="vertical">
-    <Label text="Todos Reminder" textAlignment="center" fontSize="20"></Label>
-    <TextField [(ngModel)]="task"></TextField>
+    <Label class="title" text="Todos Reminder" textAlignment="center" fontSize="20"></Label>
+    <Form>
+        <TextField 
+            class="inputTask"
+            [(ngModel)]="description"
+            hint="What needs to be done?"
+            autocorrect="false"
+            autocapitalizationType="none"
+        >
+        </TextField>
+    <Button class="btnAddTask" text="Add" (tap)="addTask()"></Button>
+    </Form>
+    <GridLayout rows="*" columns="*">
+        <ListView [items]="tasks.sort(sortById)" height="100%">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <Label [class]="taskStyle(item.active)" [text]="item.description" (tap)="updateTask(item.id)" (longPress)="deleteTask(item.id)"></Label>
+            </ng-template>
+        </ListView>
+    </GridLayout>
 </StackLayout>
